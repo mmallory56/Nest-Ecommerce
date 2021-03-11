@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { UserDto } from 'src/users/Models/DTOs/UserDto';
+
 import { UsersService } from 'src/users/users.service';
 
-import bcrypt from 'bcrypt';
+const bcrypt = require('bcrypt');
 @Injectable()
 export class AuthService {
   constructor(
@@ -17,16 +19,13 @@ export class AuthService {
   //Validate User via user name and password
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
-    console.log(user);
-    const compare = await bcrypt.compare(pass, user.password);
-    if (user && compare) {
-     
+
+    const compare = await bcrypt.compareSync(pass, user.password);
+    if (compare) {
       return user;
-    }
-    else{
+    } else {
       return null;
     }
-    
   }
   //Google Valication
   googleLogin(req) {
@@ -41,9 +40,16 @@ export class AuthService {
   }
   //Web Token Login
   async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
-    return {
-      access_token: this.jwtService.sign(payload),
+    console.log(user._id)
+    const userDto: UserDto = {
+      username: user.name,
+      email: user.email,
+      isAdmin: false,
     };
+
+    const payload = userDto;
+    const token = await this.jwtService.sign(payload);
+    userDto.token = token;
+    return userDto;
   }
 }

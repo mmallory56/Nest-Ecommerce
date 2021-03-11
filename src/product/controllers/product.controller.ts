@@ -18,6 +18,7 @@ export class ProductController {
     async getTopProducts(){
         return "Top Products"
     }
+    //get product by ID
     @Get("product/:id")
     async getProductById(@Param("id") productId:string){
         return "Single Product By ID"

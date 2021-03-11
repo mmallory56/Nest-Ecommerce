@@ -9,8 +9,6 @@ import { ConfigModule } from '@nestjs/config';
 import { UploadsModule } from './uploads/uploads.module';
 import { AuthModule } from './auth/auth.module';
 import { EmailModule } from './email/email.module';
-import { EmailService } from './email/email.service';
-import { GoogleStrategy } from './auth/strategys/google.strategy';
 
 
 @Module({

@@ -1,15 +1,10 @@
-import { Controller, Get, HttpCode, Post, Req, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, Request, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 
-import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 import { AuthService } from './auth/services/auth.service';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { EmailService } from './email/email.service';
-import { request } from 'express';
-import { User } from './users/Models/schema/user.schema';
-import passport from 'passport';
 import { AuthGuard } from '@nestjs/passport';
-import { GoogleStrategy } from './auth/strategys/google.strategy';
 
 
 //Main Controller with Common EndPoints
@@ -21,26 +16,26 @@ export class AppController {
     private readonly emailService: EmailService,
   ) {}
   @Get()
-  Hey(){
-    return "Welcome Matthew"
+  Hey() {
+    return 'Welcome Matthew';
   }
   //Sign Up
 
   @Post('signup')
-  
   async signUp(@Request() req) {
     return this.authService.signUp(req.body.user);
   }
   //Login and validate User
-  @Get('auth/login')
-  //@UseGuards(LocalAuthGuard)
+ 
+  @UseGuards(AuthGuard('local'))
+  @Post('auth/login')
   async login(@Request() req) {
-    console.log(req.user)
-    return "yes"
+   
+    return this.authService.login(req.user);
   }
 
   //View User Profile
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard('jwt'))
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
@@ -51,6 +46,8 @@ export class AppController {
   async sendEmail() {
     return this.emailService.sendEmail();
   }
+
+
   @Get('google')
   @UseGuards(AuthGuard('google'))
   loginGoogle(@Req() req) {

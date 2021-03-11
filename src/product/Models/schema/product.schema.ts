@@ -7,12 +7,14 @@ export type ProductDocument = Product & Document;
 
 
 @Schema()
-export class Product implements ProductInterface{
-    @Prop()
-    title: string;
-    @Prop()
-    price: Number;
-
+export class Product implements ProductInterface {
+    
+  @Prop()
+  title: string;
+  @Prop()
+  description: string;
+  @Prop()
+  price: Number;
 }
 
 
