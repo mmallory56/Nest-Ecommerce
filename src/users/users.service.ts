@@ -4,6 +4,7 @@ import { profile } from 'console';
 import { Model } from 'mongoose';
 import { UserInterface } from 'src/users/Models/interfaces/UserInterface';
 import { User, UserDocument } from 'src/users/Models/schema/user.schema';
+import { UserRoles } from './enums/rolesEnum';
 
 
 //Please Isolate Encryption to another Class
@@ -57,6 +58,7 @@ export class UsersService {
         name: username,
         email: email,
         password: '',
+        role:[UserRoles.customer]
       });
       return newuser;
     }

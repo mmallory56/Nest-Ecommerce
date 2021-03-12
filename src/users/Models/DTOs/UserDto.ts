@@ -1,9 +1,10 @@
+import { UserRoles } from "src/users/enums/rolesEnum";
 
 export interface UserDto{
 
     username:string;
-    token?:string;
+    
     email:string;
-    isAdmin:boolean;
+    role?:UserRoles[];
 
 }

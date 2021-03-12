@@ -1,6 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { compareSync } from 'bcrypt';
+import { resourceUsage } from 'node:process';
+import { UserRoles } from 'src/users/enums/rolesEnum';
 import { UserDto } from 'src/users/Models/DTOs/UserDto';
+import { UserInterface } from 'src/users/Models/interfaces/UserInterface';
 
 import { UsersService } from 'src/users/users.service';
 
@@ -8,7 +12,8 @@ const bcrypt = require('bcrypt');
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly usersService: UsersService,
+   
+    private usersService:UsersService,
     private jwtService: JwtService,
   ) {}
   //sign up with username email password.
@@ -22,6 +27,8 @@ export class AuthService {
 
     const compare = await bcrypt.compareSync(pass, user.password);
     if (compare) {
+     
+      
       return user;
     } else {
       return null;
@@ -39,17 +46,17 @@ export class AuthService {
     };
   }
   //Web Token Login
-  async login(user: any) {
-    console.log(user._id)
-    const userDto: UserDto = {
-      username: user.name,
-      email: user.email,
-      isAdmin: false,
+  async login(user) {
+    console.log(user.user)
+    
+    const payload ={
+      email: user.user.email,
+      username: user.user.name,
+      role: user.user.role
     };
-
-    const payload = userDto;
+    console.log(payload)
     const token = await this.jwtService.sign(payload);
-    userDto.token = token;
-    return userDto;
+    
+    return token;
   }
 }

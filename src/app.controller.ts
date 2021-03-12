@@ -5,6 +5,8 @@ import { AuthService } from './auth/services/auth.service';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { EmailService } from './email/email.service';
 import { AuthGuard } from '@nestjs/passport';
+import { Observable } from 'rxjs';
+import { User } from './users/Models/schema/user.schema';
 
 
 //Main Controller with Common EndPoints
@@ -30,6 +32,7 @@ export class AppController {
   @UseGuards(AuthGuard('local'))
   @Post('auth/login')
   async login(@Request() req) {
+   console.log(req.user)
    
     return this.authService.login(req.user);
   }

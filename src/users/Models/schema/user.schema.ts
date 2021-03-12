@@ -4,6 +4,7 @@ import { UserInterface } from '../interfaces/UserInterface';
 import bcrypt from 'bcrypt';
 import { BeforeInsert } from 'typeorm';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { UserRoles } from 'src/users/enums/rolesEnum';
 export type UserDocument = User & Document;
 
 
@@ -25,7 +26,8 @@ export class User implements UserInterface {
   googleId: string;
   @Prop({ default: false })
   isAdmin: boolean;
-
+  @Prop({default: UserRoles.customer})
+  role:UserRoles[];
   
 }
 
