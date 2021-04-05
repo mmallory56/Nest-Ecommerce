@@ -1,0 +1,38 @@
+{
+   "1": {
+  "title": "Men's Muscle T-Shirt",
+  "description": "SUPERIOR QUALITY MATERIAL - 95% Polyester & 5% Spandex fabric provides ultimate durability and comfort. This shirt is light in weight and breathable which help you stay comfortable.",
+  "price": 20.39,
+  "image": "./src/images/shirt.png",
+  "category": "mens clothing",
+  "rating": 4.5,
+  "ratings": 4
+    },
+   "2": {
+  "title": "Men's Muscle T-Shirt",
+  "description": "SUPERIOR QUALITY MATERIAL - 95% Polyester & 5% Spandex fabric provides ultimate durability and comfort. This shirt is light in weight and breathable which help you stay comfortable.",
+  "price": 20.39,
+  "image": "./src/images/shirt.png",
+  "category": "mens clothing",
+  "rating": 4.5,
+  "ratings": 4
+    },
+   "3": {
+  "title": "Men's Muscle T-Shirt",
+  "description": "SUPERIOR QUALITY MATERIAL - 95% Polyester & 5% Spandex fabric provides ultimate durability and comfort. This shirt is light in weight and breathable which help you stay comfortable.",
+  "price": 20.39,
+  "image": "./src/images/shirt.png",
+  "category": "mens clothing",
+  "rating": 4.5,
+  "ratings": 4
+    },
+   "4": {
+  "title": "Men's Muscle T-Shirt",
+  "description": "SUPERIOR QUALITY MATERIAL - 95% Polyester & 5% Spandex fabric provides ultimate durability and comfort. This shirt is light in weight and breathable which help you stay comfortable.",
+  "price": 20.39,
+  "image": "./src/images/shirt.png",
+  "category": "mens clothing",
+  "rating": 4.5,
+  "ratings": 4
+    }
+}

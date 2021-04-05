@@ -24,15 +24,15 @@ export class ProductController {
   }
   
   
-  @hasRoles(UserRoles.admin)
-  @UseGuards(AuthGuard('jwt'),RolesGuard)
- 
   //get product by ID
   @Get('product/:id')
   async getProductById(@Param('id') productId: string) {
     //console.log(req.user);
-    return 'Single Product By ID';
+    return this.productService.getProductById(productId);
   }
+
+  @hasRoles(UserRoles.admin)
+  @UseGuards(AuthGuard('jwt'),RolesGuard)
   //Update Product
   @Put('product/:id')
   async updateProduct(
@@ -41,15 +41,15 @@ export class ProductController {
   ) {
     return this.productService.editProduct(id, product);
   }
-  @hasRoles(UserRoles.admin)
+  // @hasRoles(UserRoles.admin)
 
   //Create New Product
   @Post('product/create')
   async createProduct(
-    @Param('id') productId: string,
+    @Param('id') userId: string,
     @Body('product') createProduct: Product,
   ) {
-    return this.productService.createProduct(productId, createProduct);
+    return this.productService.createProduct(userId, createProduct);
   }
   //Delete Product by Id
   @Delete('product/:id')

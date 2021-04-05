@@ -9,12 +9,22 @@ export type ProductDocument = Product & Document;
 @Schema()
 export class Product implements ProductInterface {
     
-  @Prop()
+  @Prop({ required: true })
   title: string;
-  @Prop()
+  @Prop({ required: false })
   description: string;
-  @Prop()
+  @Prop({ required: true })
   price: Number;
+  @Prop({ required: false })
+  image: string;
+  @Prop({ required: false })
+  category?: string;
+  @Prop({ required: false })
+  rating: number;
+  @Prop({ required: false })
+  ratings: number;
+
+
 }
 
 

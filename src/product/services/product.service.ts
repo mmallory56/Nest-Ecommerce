@@ -17,8 +17,22 @@ export class ProductService {
     getTopProduct(){
 
     }
+    async getProductById(id:string){
+           try{
+            const Product =  this.productModel.findById(id)
+        
+        return Product;
+       }
+       catch(err)
+       {
+           return err;
+       }
+    }
+    getProductbyName(name:string){
+
+    }
     //Create A Product
-   async createProduct(id:string,product:Product){
+   async createProduct(userId:string,product:Product){
        try{
             const createProduct =  this.productModel.create(product)
         const savedProduct = await (await createProduct).save();

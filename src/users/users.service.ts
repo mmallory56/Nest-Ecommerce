@@ -21,8 +21,8 @@ export class UsersService {
 
   //Create New User
   async newUser(user: UserInterface): Promise<any> {
-    const findUser = this.usersModel.findOne({ email: user.email });
-
+    const findUser =await this.usersModel.findOne({ email: user.email });
+    console.log(findUser)
     if (!findUser) {
       try {
 
@@ -42,7 +42,7 @@ export class UsersService {
 
   //Find User By User name
   async findOne(username: string): Promise<UserInterface | undefined> {
-    return this.usersModel.findOne({ name: username });
+    return await this.usersModel.findOne({ email: username });
   }
   //Find Or Create New User
   async findOrCreate(

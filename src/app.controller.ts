@@ -34,7 +34,7 @@ export class AppController {
   async login(@Request() req) {
    console.log(req.user)
    
-    return this.authService.login(req.user);
+    return {token:await this.authService.login(req.user),user:req.user.user};
   }
 
   //View User Profile
